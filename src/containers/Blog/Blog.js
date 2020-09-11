@@ -6,35 +6,48 @@ import NewPost from "../../components/NewPost/NewPost";
 import "./Blog.css";
 
 class Blog extends Component {
-    state={
-        Post:[],
-        SelectedPost:[]
-    }
+	state = {
+		Post: [],
+		SelectedPost: [],
+	};
 	componentDidMount() {
 		axios
 			.get("https://jsonplaceholder.typicode.com/posts")
 			.then((re) => {
-                this.setState({
-                    Post:re.data.splice(0,4)
-                })
+				const GettingPost = re.data.splice(0, 4);
+				const UpdatedPost = GettingPost.map((re) => {
+					return {
+						...re,
+						author: "Ayush",
+					};
+				});
+
+				this.setState({
+					Post: UpdatedPost,
+				});
 				console.log(this.state.Post);
 			})
 			.catch((re) => {
 				console.log(re);
 			});
-    }
-    SelectedPostHandler=(id)=>{
-        console.log(id);
-    }
+	}
+	SelectedPostHandler = (id) => {
+		console.log(id);
+	};
 	render() {
-        const posts =this.state.Post.map((re)=>{
-          return <Post title={re.title} key={re.id} clicked={()=>this.SelectedPostHandler(re.id)}/>;
-        })
+		const posts = this.state.Post.map((re) => {
+			return (
+				<Post
+					title={re.title}
+					key={re.id}
+					author={re.author}
+					clicked={() => this.SelectedPostHandler(re.id)}
+				/>
+			);
+		});
 		return (
 			<div>
-				<section className="Posts">
-					{posts}
-				</section>
+				<section className="Posts">{posts}</section>
 				<section>
 					<FullPost />
 				</section>
