@@ -32,9 +32,9 @@ class Blog extends Component {
 			});
 	}
 	SelectedPostHandler = (id) => {
-        this.setState({
-            SelectedId:id
-        })
+		this.setState({
+			SelectedId: id,
+		});
 	};
 	render() {
 		const posts = this.state.Post.map((re) => {
@@ -51,7 +51,7 @@ class Blog extends Component {
 			<div>
 				<section className="Posts">{posts}</section>
 				<section>
-					<FullPost id={this.state.SelectedId}/>
+					<FullPost id={this.state.SelectedId} />
 				</section>
 				<section>
 					<NewPost />
