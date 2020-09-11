@@ -6,7 +6,7 @@ import axios from "axios";
 class FullPost extends Component {
 	componentDidUpdate() {
 		axios
-			.get("https://jsonplaceholder.typicode.com/posts/")
+            .get("https://jsonplaceholder.typicode.com/posts/"+this.props.id)
 			.then((re) => {
 				console.log(re);
 			})
