@@ -8,7 +8,7 @@ import "./Blog.css";
 class Blog extends Component {
 	state = {
 		Post: [],
-		SelectedPost: [],
+		SelectedId: false,
 	};
 	componentDidMount() {
 		axios
@@ -32,7 +32,9 @@ class Blog extends Component {
 			});
 	}
 	SelectedPostHandler = (id) => {
-		console.log(id);
+        this.setState({
+            SelectedId:id
+        })
 	};
 	render() {
 		const posts = this.state.Post.map((re) => {
@@ -49,7 +51,7 @@ class Blog extends Component {
 			<div>
 				<section className="Posts">{posts}</section>
 				<section>
-					<FullPost />
+					<FullPost id={this.state.SelectedId}/>
 				</section>
 				<section>
 					<NewPost />
