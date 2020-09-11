@@ -4,9 +4,12 @@ import "./FullPost.css";
 import axios from "axios";
 
 class FullPost extends Component {
+	state = {
+		SelectedPost: {},
+	};
 	componentDidUpdate() {
 		axios
-            .get("https://jsonplaceholder.typicode.com/posts/"+this.props.id)
+			.get("https://jsonplaceholder.typicode.com/posts/" + this.props.id)
 			.then((re) => {
 				console.log(re);
 			})
@@ -19,7 +22,7 @@ class FullPost extends Component {
 		if (this.props.id) {
 			post = (
 				<div className="FullPost">
-					<h1>Title</h1>
+					<h1>{this.state.SelectedPost.title}</h1>
 					<p>Content</p>
 					<div className="Edit">
 						<button className="Delete">Delete</button>
