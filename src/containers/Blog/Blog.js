@@ -24,7 +24,7 @@ class Blog extends Component {
 			});
     }
     SelectedPostHandler=(id)=>{
-        
+        console.log(id);
     }
 	render() {
         const posts =this.state.Post.map((re)=>{
