@@ -5,25 +5,33 @@ import axios from "axios";
 
 class FullPost extends Component {
 	state = {
-		SelectedPost: {},
+		loadedPost:null
 	};
 	componentDidUpdate() {
+		if(this.props.id){
 		axios
 			.get("https://jsonplaceholder.typicode.com/posts/" + this.props.id)
 			.then((re) => {
 				console.log(re);
+				this.setState({
+					loadedPost:re.data
+				})
 			})
 			.catch((re) => {
 				console.log(re);
 			});
+		}
 	}
 	render() {
 		let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
 		if (this.props.id) {
+			 post=<p>Loading POst</p>
+		}
+		if(this.state.loadedPost){
 			post = (
 				<div className="FullPost">
-					<h1>{this.state.SelectedPost.title}</h1>
-					<p>Content</p>
+					<h1>{this.state.loadedPost.title}</h1>
+			<p>{this.state.loadedPost.content}</p>
 					<div className="Edit">
 						<button className="Delete">Delete</button>
 					</div>
