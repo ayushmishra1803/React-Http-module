@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Post from "../../components/Post/Post";
-import FullPost from "../../components/FullPost/FullPost";
-import NewPost from "../../components/NewPost/NewPost";
+import FullPost from "../FullPost/FullPost";
+import NewPost from "../NewPost/NewPost";
 import "./Blog.css";
 
 class Blog extends Component {
-	state = {
-		Post: [],
-		SelectedId: false,
-	};
+	
 	componentDidMount() {
 		axios
 			.get("https://jsonplaceholder.typicode.com/posts")
@@ -31,22 +28,9 @@ class Blog extends Component {
 				console.log(re);
 			});
 	}
-	SelectedPostHandler = (id) => {
-		this.setState({
-			SelectedId: id,
-		});
-	};
+
 	render() {
-		const posts = this.state.Post.map((re) => {
-			return (
-				<Post
-					title={re.title}
-					key={re.id}
-					author={re.author}
-					clicked={() => this.SelectedPostHandler(re.id)}
-				/>
-			);
-		});
+	
 		return (
 			<div className="block">
 				<header>
@@ -61,7 +45,7 @@ class Blog extends Component {
 						</ul>
 					</nav>
 				</header>
-				<section className="Posts">{posts}</section>
+				
 			
 			</div>
 		);
