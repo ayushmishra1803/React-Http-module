@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
+import Post from "../../components/Post/Post"
 import axios from "axios";
-class Post extends Component {
+class Posts extends Component {
 	state = {
 		Post: [],
 	};
@@ -50,4 +50,4 @@ class Post extends Component {
 	}
 }
 
-export default Post;
+export default Posts;
