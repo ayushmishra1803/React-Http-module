@@ -7,14 +7,15 @@ class FullPost extends Component {
 	state = {
 		loadedPost: null,
 	};
-	componentDidUpdate() {
-		if (this.props.id) {
+	componentDidMount() {
+		console.log(this.props.match.params.id);
+		if (this.props.match.params.id) {
 			if (
 				!this.state.loadedPost ||
-				(this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
+				(this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id)
 			) {
 				axios
-					.get("https://jsonplaceholder.typicode.com/posts/" + this.props.id)
+					.get("https://jsonplaceholder.typicode.com/posts/" + this.props.match.params.id)
 					.then((re) => {
 						console.log(re);
 						this.setState({
@@ -28,8 +29,8 @@ class FullPost extends Component {
 		}
 	}
 	DeletePostHandler=()=>{
-		console.log(this.props.id);
-		axios.delete("https://jsonplaceholder.typicode.com/posts/"+this.props.id).then(re=>{
+		console.log(this.props.match.params.id);
+		axios.delete("https://jsonplaceholder.typicode.com/posts/"+this.props.match.params.id).then(re=>{
 			console.log(re);
 		}).catch(re=>{
 			console.log(re);
@@ -37,7 +38,7 @@ class FullPost extends Component {
 	}
 	render() {
 		let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
-		if (this.props.id) {
+		if (this.props.match.params.id) {
 			post = <p style={{ textAlign: "center" }}> Loading POst</p>;
 		}
 		if (this.state.loadedPost) {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Post from "../../components/Post/Post"
 import axios from "axios";
 import { Route } from 'react-router-dom';
+import FullPost from "../FullPost/FullPost"
 class Posts extends Component {
 	state = {
 		Post: [],
@@ -46,7 +47,7 @@ class Posts extends Component {
 			<div>
 				<section className="Posts">{posts}</section>
 				<section>
-					<Route path="/:id" />
+					<Route path="/:id" component={FullPost}/>
 				</section>
 			</div>
 		);
