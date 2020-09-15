@@ -7,12 +7,10 @@ class Posts extends Component {
 		Post: [],
 	};
 	SelectedPostHandler = (id) => {
-		this.setState({
-			SelectedId: id,
-		});
-	};
+		this.props.history.push("/"+id);
+};
 	componentDidMount() {
-		console.log(this.props);
+		console.log(this.props.history);
 		axios
 			.get("https://jsonplaceholder.typicode.com/posts")
 			.then((re) => {
