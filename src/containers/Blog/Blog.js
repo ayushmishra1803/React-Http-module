@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./Blog.css";
-import {Route,Link} from "react-router-dom"
-import Posts from "../../containers/Posts/post"
-import NewPost from "../NewPost/NewPost"
+import { Route, NavLink, Switch } from "react-router-dom";
+import Posts from "../../containers/Posts/post";
+import NewPost from "../NewPost/NewPost";
 class Blog extends Component {
 	render() {
 		return (
@@ -11,16 +11,18 @@ class Blog extends Component {
 					<nav>
 						<ul>
 							<li>
-								<Link to="/">Home</Link>
+								<NavLink to="/">Home</NavLink>
 							</li>
 							<li>
-								<Link to="/new-Post">New Post</Link>
+								<NavLink to="/new-Post">New Post</NavLink>
 							</li>
 						</ul>
 					</nav>
 				</header>
-				<Route path="/" exact component={Posts} />
-				<Route path="/new-Post" exact component={NewPost} />
+				<Switch>
+					<Route path="/new-Post" exact component={NewPost} />
+					<Route path="/" exact component={Posts} />
+				</Switch>
 			</div>
 		);
 	}
